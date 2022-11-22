@@ -21,7 +21,3 @@
     </div>
 </div>
 @endsection
-
-
-
-ttttt
