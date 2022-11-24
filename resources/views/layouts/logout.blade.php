@@ -22,7 +22,7 @@
 <body>
   <header>
     <h1><img src="images/atlas.png"></h1>
-    <p>Social Network Service</p>
+    <p>Social Network Service ログアウト画面だよ</p>
   </header>
   <div id="container">
     @yield('content')
