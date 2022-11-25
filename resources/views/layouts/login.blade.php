@@ -28,7 +28,7 @@
                     <p>〇〇さん<img src="images/arrow.png"></p>
                 <div>
                 <ul>
-                    <li><a href="/top">ホーム</a></li>
+                    <li><a href="/home">ホーム</a></li>
                     <li><a href="/profile">プロフィール</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
@@ -53,7 +53,7 @@
                 </div>
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <p class="btn"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
