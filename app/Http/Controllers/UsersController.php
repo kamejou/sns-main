@@ -16,4 +16,5 @@ class UsersController extends Controller
     public function logout(){
         return view('layouts.logout');
     }
+
 }

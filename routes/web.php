@@ -31,14 +31,17 @@ Route::post('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ
 Route::get('/top','PostsController@index');
-
 Route::get('/profile','UsersController@profile');
-
 Route::get('/search','UsersController@search');
-
+Route::get('/index', 'UsersController@index');
 Route::get('/follow-list','FollowsController@followList');
 Route::get('/follower-list','FollowsController@followerList');
 
-Route::get('/logout', 'UsersController@logout');
-
-Route::get('/home', 'HomeController@__construct');
+//投稿を押した時
+Route::post('/posts/create','PostsController@create');
+Route::post('/post','PostController@store')->name('post.store');
+//削除delete
+Route::get('/post/{id}/delete', 'PostsController@delete');
+Route::post('/post/{id}/delete', 'PostsController@delete');
+//更新update
+Route::get('post/{id}/update-form', 'PostsController@updateForm');

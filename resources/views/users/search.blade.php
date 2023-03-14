@@ -1,12 +1,9 @@
 @extends('layouts.login')
-
 @section('content')
-<form method="post" action="URL" method="get">
-	<div>
-		<input type="search" name="" placeholder="ユーザー名">
-	</div>
-	<input type="submit" value="検索する" />
+<form method="GET" >
+    <input type="search" placeholder="ユーザー名を入力" name="search" value="">
+    <div>
+        <button type="submit"><a href="/search">検索</a></button>
+    </div>
 </form>
-
-
 @endsection
