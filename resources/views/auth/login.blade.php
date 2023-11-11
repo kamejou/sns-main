@@ -13,9 +13,10 @@
 
 {{ Form::submit('ログイン') }}
 
+<form name="Login" method="post" action="/cgi-bin/Login.cgi"></form>
 <p><a href="/register">新規ユーザーの方はこちら</a></p>
 
 
-{!! Form::close() !!}
+{!! Form::close()!!}
 
 @endsection

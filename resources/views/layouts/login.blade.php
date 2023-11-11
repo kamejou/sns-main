@@ -26,11 +26,13 @@
         <div id="">
             <div class="menu">
                 <input type="checkbox" id="menu_bar01" />
-                <label for="menu_bar01"><p>〇〇さん<img src="images/arrow.png"></p></label>
+                @auth
+                <label for="menu_bar01"><p>{{ Auth::user()-> username }}さん<img src="images/arrow.png"></p></label>
+                @endauth
                 <ul id="links01">
                     <li><a href="/top">ホーム</a></li>
                     <li><a href="/profile">プロフィール編集</a></li>
-                    <li><a href="/login">ログアウト</a></li>
+                    <li><a href="/logout">ログアウト</a></li>
                 </ul>
             </div>
         </div>
@@ -41,7 +43,7 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
+                <p>{{ Auth::user()-> username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
                 <p>〇〇名</p>

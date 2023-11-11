@@ -40,19 +40,24 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'username' => 'required|string|max:255',
-            'mail' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:4|confirmed',
-        ]);
+
+    // public function registerForm(){
+    //     return view("auth.register");
+    // }
+
+    public function register(Request $request){
+        if($request->isMethod('post')){
+            $request->validate([
+                'username' => 'required|string|min:2|max:10',
+                'mail' => 'required|string|email|min:5|max:40|unique:users',
+                'password' => 'required|string|min:8|max:20|confirmed',
+            ]);
+
+            $data = $request->input();
+            $this->create($data);
+            return view('auth.added', compact('data'));
+        }
+        return view('auth.register');
     }
 
     /**
@@ -68,24 +73,4 @@ class RegisterController extends Controller
             'mail' => $data['mail'],
             'password' => bcrypt($data['password']),
         ]);
-    }
-
-
-    // public function registerForm(){
-    //     return view("auth.register");
-    // }
-
-    public function register(Request $request){
-        if($request->isMethod('post')){
-            $data = $request->input();
-
-            $this->create($data);
-            return redirect('added');
-        }
-        return view('auth.register');
-    }
-
-    public function added(){
-        return view('auth.added');
-    }
-}
+    }}
