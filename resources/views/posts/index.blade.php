@@ -1,6 +1,9 @@
 @extends('layouts.login')
 
 @section('content')
+<style>
+
+  </style>
 <form action="/posts/create" method="POST">
    @csrf
   <textarea name="content" placeholder="内容の入力"></textarea>
@@ -15,25 +18,55 @@
   @foreach ($list as $value)
 <tr>
   <td><img src="{{ asset('images/icon1.png') }}"></td>
-  <td>{{ $value->user_id }}</td>
-  <!-- ↑user_idとusernameを連結する。 -->
+  <td>{{ $value->username }}</td>
   <td>{{ $value->post }}</td>
-  <td><a href="/post/{{$value->id}}/update-form"><img src="{{ asset('images/edit.png') }}" alt="編集" class="example1"></a></td>
-
+  <!-- ↓ログインしているユーザーのみ下記表示 -->
+  @if (Auth::user()->id == $value->user_id)
+  <!-- ↓編集ボタンをクリックしたときのモーダル -->
   <td>
-    <div id="edit" v-if="showmodal" @click="back(edit_message)">
-      <div id="i" @click.stop>
-        <div class="bg-primary rounded py-2 px-3 mb-2">
-          <input type="text" v-model="edit_message.text">
-          <button type="button" class="btn btn-primary btn-sm" @click="message_update(edit_message)">編集</button>
-        </div>
-      </div>
+    <div class="content">
+        <!-- 投稿の編集ボタン -->
+        <a class="js-modal-open" href="" post="{{ $value->post }}" post_id="{{ $value->id }}"><img src="{{ asset('images/edit.png') }}" alt="編集" class="example1"></a>
     </div>
+    </div>
+  </div>
+</div>
+
   </td>
 
-  <td><a class="btn btn-danger" href="/post/{{$value->id}}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"><img src="{{ asset('images/trash.png') }}" alt="削除" class="example1"></a></td>
+  {{ csrf_field() }}
 
+  <td><a class="btn" href="/post/{{$value->id}}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"><img src="{{ asset('images/trash-h.png') }}" alt="削除" class="example1"></a></td>
+
+  @endif
+
+  <td>{{ $value->created_at }}</td>
   <hr>
+
+        <script src="main.js"></script>
+
+
 </tr>
 @endforeach
+<!-- モーダルの中身 -->
+    <div class="modal js-modal">
+        <div class="modal__bg js-modal-close"></div>
+        <div class="modal__content">
+           <form action="modal-update" method="POST">
+                <textarea name="post" class="modal_post"></textarea>
+                <input type="hidden" name="id" class="modal_id" value="post_id">
+                <button type="submit">
+                  <img src="{{ asset('images/edit.png') }}" alt="更新">
+                </button>
+                {{ csrf_field() }}
+           </form>
+           <a class="js-modal-close" href="">閉じる</a>
+        </div>
+    </div>
+<script>
+    function submitForm() {
+        // フォームを送信
+        document.getElementById('updateForm').submit();
+    }
+</script>
 @endsection

@@ -6,8 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
+    <!-- css -->
     <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
     <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -34,6 +41,14 @@
                     <li><a href="/profile">プロフィール編集</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
+                <a href="https://laravel.com/docs"><button class='btn btn-default'>Docs</button></a>
+                <a href="https://laracasts.com"><button class='btn btn-primary'>Laracasts</button></a>
+                <a href="https://laravel-news.com"><button class='btn btn-success'>News</button></a>
+                <a href="https://blog.laravel.com"><button class='btn btn-info'>Blog</button></a>
+                <a href="https://nova.laravel.com"><button class='btn btn-warning'>Nova</button></a>
+                <a href="https://forge.laravel.com"><button class='btn btn-danger'>Forge</button></a>
+                <a href="https://vapor.laravel.com"><button class='btn btn-link'>Vapor</button></a>
+                <a href="https://github.com/laravel/laravel"><button class='btn btn-primary'>GitHub</button></a>
             </div>
         </div>
     </header>
@@ -59,8 +74,12 @@
         </div>
     </div>
     <footer>
+        <script>
+          $(function(){ // if document is ready
+  alert('hello world')
+});
+        </script>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
-</body>
+
+    </body>
 </html>

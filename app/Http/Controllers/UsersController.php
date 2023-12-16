@@ -66,4 +66,6 @@ class UsersController extends Controller
         return redirect('/top')->with('success', 'ユーザー情報が更新されました。');
     }
 
+
+
 }

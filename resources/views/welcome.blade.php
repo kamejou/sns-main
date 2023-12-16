@@ -91,5 +91,9 @@
                 </div>
             </div>
         </div>
+        <!-- resources/views/welcome.blade.php -->
+
+@extends('layouts.app')
+
     </body>
 </html>

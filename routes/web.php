@@ -37,9 +37,12 @@ Route::middleware([AuthCheck::class])->group(function () {
   Route::get('/profile','UsersController@profile');
   Route::get('/search','UsersController@search');
   Route::get('/index', 'UsersController@index');
+  Route::post('/update/top','UsersController@update');
+  Route::post('modal-update', 'PostsController@modalUpdate');
+
+  // follow機能
   Route::get('/follow-list','FollowsController@followList');
   Route::get('/follower-list','FollowsController@followerList');
-  Route::post('/update/top','UsersController@update');
 
   //投稿を押した時
   Route::post('/posts/create','PostsController@create');
@@ -47,6 +50,9 @@ Route::middleware([AuthCheck::class])->group(function () {
   //削除delete
   Route::get('/post/{id}/delete', 'PostsController@delete');
   Route::post('/post/{id}/delete', 'PostsController@delete');
-  //更新update
-  Route::get('post/{id}/update-form', 'PostsController@updateForm');
+  //フォロー機能
+  Route::post('/users/{user}/follow', 'FollowUserController@follow');
+  Route::post('/users/{user}/unfollow', 'FollowUserController@unfollow');
+
+
 });

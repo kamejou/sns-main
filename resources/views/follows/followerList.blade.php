@@ -2,4 +2,7 @@
 
 @section('content')
 フォロワーリスト
+
+
+
 @endsection

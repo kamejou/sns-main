@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Http\Request;
-
-use App\Post;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Post;
+
 
 class PostsController extends Controller
 {
@@ -15,19 +15,30 @@ class PostsController extends Controller
     {
         $list= Post::get();
         // dd($list);<-変数のデータ閲覧
+
+        $this->posts = new Post();
+        $list = $this->posts->getUserNameById();
+        $list = Post::all();
+        // 連結
         return view('posts.index',['list'=>$list]);
     }
 
     public function create(Request $request)
     {
         $post = $request->input('content');
-        $userId = Auth::id();
+        $user_id = Auth::id();
          Post::create([
             'post' => $post,
-            'user_id' => $userId
+            'user_id' => $user_id
         ]);
         $list= Post::get();
         // dd($list);<-変数のデータ閲覧
+
+        $this->posts = new Post();
+        $list = $this->posts->getUserNameById();
+        $list = Post::all();
+        // 連結
+
 
         return view('posts.index',['list'=>$list]);
 
@@ -41,25 +52,35 @@ class PostsController extends Controller
         $list= Post::get();
         // dd($list);<-変数のデータ閲覧
 
+        $this->posts = new Post();
+        $list = $this->posts->getUserNameById();
+        $list = Post::all();
+        // 連結
+
         return view('posts.index',['list'=>$list]);
 
     }
 
-    public function update(Request $request)
-   {
-       $message = Message::findOrFail($request->id);
-       $user = Auth::user();
-       $message->text = $request->text;
-       if($request->user_id === $user->id) {
-           $message->update();
-           event(new MessageCreated($message));
-           return $message;
-       } else {
-           return false;
-       }
-   }
-
    public function home(){
     return redirect('/logout');
    }
+
+   public function hello(){
+    return redirect('views.welcome');
+   }
+
+   public function modalUpdate(Request $request){
+    $id = $request->input('id');
+    $post = Post::find($id);
+
+    if ($post) {
+        // モデルのプロパティを更新
+        $post->post = $request->input('post');
+
+        // モデルを保存
+        $post->save();
+    }
+
+    return redirect('top');
+    }
 }
