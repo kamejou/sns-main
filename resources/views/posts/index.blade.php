@@ -32,6 +32,7 @@
   </div>
 </div>
 
+
   </td>
 
   {{ csrf_field() }}

@@ -79,6 +79,53 @@
   alert('hello world')
 });
         </script>
+
+
+
+<script>
+    export default {
+        props:['userId', 'defaultFollowed', 'defaultCount'],
+        data() {
+          return{
+              followed: false,
+              followCount: 0,
+          };
+        },
+        created() {
+          this.followed = this.defaultFollowed
+          this.followCount = this.defaultCount
+        },
+
+        methods: {
+          follow(userId) {
+            let url = `/users/${userId}/follow`
+
+            axios.post(url)
+            .then(response => {
+                this.followed = true;
+                this.followCount = response.data.followCount;
+            })
+            .catch(error => {
+              alert(error)
+            });
+          },
+          unfollow(userId) {
+            let url = `/users/${userId}/unfollow`
+
+            axios.post(url)
+            .then(response => {
+                this.followed = false;
+                this.followCount = response.data.followCount;
+            })
+            .catch(error => {
+              alert(error)
+            });
+          }
+        }
+    }
+</script>
+
+
     </footer>
 
     </body>

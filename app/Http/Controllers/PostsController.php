@@ -23,6 +23,7 @@ class PostsController extends Controller
         return view('posts.index',['list'=>$list]);
     }
 
+
     public function create(Request $request)
     {
         $post = $request->input('content');

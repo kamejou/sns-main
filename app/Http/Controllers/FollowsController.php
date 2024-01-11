@@ -16,20 +16,27 @@ class FollowsController extends Controller
         return view('follows.followerList');
     }
 
-    public function follow(User $user) {
-        $follow = FollowUser::create([
-            'following_id' => \Auth::user()->id,
-            'followed_id' => $user->id,
-        ]);
-        $followCount = count(FollowUser::where('followed_id', $user->id)->get());
-        return response()->json(['followCount' => $followCount]);
-    }
 
-    public function unfollow(User $user) {
-        $follow = FollowUser::where('following_id', \Auth::user()->id)->where('followed_id', $user->id)->first();
-        $follow->delete();
-        $followCount = count(FollowUser::where('followed_d', $user->id)->get());
 
-        return response()->json(['followCount' => $followCount]);
-    }
+    //フォローする
+    // public function follow(Request $request)
+    // {
+    //     FollowUser::firstOrCreate([
+    //         'followed_id' => $request->post_user,
+    //         'following_id' => $request->auth_user
+    //     ]);
+    //     return true;
+    // }
+    // //フォロー解除する
+    // public function unfollow(Request $request)
+    // {
+    //     $follow = FollowUser::where('followed_id', $request->post_user)
+    //         ->where('following_id', $request->auth_user)
+    //         ->first();
+    //     if ($follow) {
+    //         $follow->delete();
+    //         return false;
+    //     }
+    // }
+
 }

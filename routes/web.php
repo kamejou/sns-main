@@ -40,7 +40,7 @@ Route::middleware([AuthCheck::class])->group(function () {
   Route::post('/update/top','UsersController@update');
   Route::post('modal-update', 'PostsController@modalUpdate');
 
-  // follow機能
+  // followページ移動
   Route::get('/follow-list','FollowsController@followList');
   Route::get('/follower-list','FollowsController@followerList');
 
@@ -51,8 +51,18 @@ Route::middleware([AuthCheck::class])->group(function () {
   Route::get('/post/{id}/delete', 'PostsController@delete');
   Route::post('/post/{id}/delete', 'PostsController@delete');
   //フォロー機能
-  Route::post('/users/{user}/follow', 'FollowUserController@follow');
-  Route::post('/users/{user}/unfollow', 'FollowUserController@unfollow');
+
+  // ログイン状態
+Route::group(['middleware' => 'auth'], function() {
+
+    // ユーザ関連
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'edit', 'update']]);
+
+    // フォロー/フォロー解除を追加
+    Route::post('users/{id}/follow', 'FollowUsersController@follow')->name('follow');
+    Route::delete('users/{id}/unfollow', 'FollowUsersController@unfollow')->name('unfollow');
+
+});
 
 
 });
