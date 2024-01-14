@@ -1,9 +1,6 @@
 @extends('layouts.login')
 
 @section('content')
-<style>
-
-  </style>
 <form action="/posts/create" method="POST">
    @csrf
   <textarea name="content" placeholder="内容の入力"></textarea>
@@ -15,18 +12,19 @@
 </form>
  <h2>投稿一覧</h2>
  <hr class="line">
-  @foreach ($list as $value)
+@foreach($users as $user)
+@foreach($user->posts as $post)
 <tr>
   <td><img src="{{ asset('images/icon1.png') }}"></td>
-  <td>{{ $value->username }}</td>
-  <td>{{ $value->post }}</td>
+  <td>{{ $user->username }}</td>
+  <td>{{ $post->post }}</td>
   <!-- ↓ログインしているユーザーのみ下記表示 -->
-  @if (Auth::user()->id == $value->user_id)
+  @if (Auth::user()->id == $user->id)
   <!-- ↓編集ボタンをクリックしたときのモーダル -->
   <td>
     <div class="content">
         <!-- 投稿の編集ボタン -->
-        <a class="js-modal-open" href="" post="{{ $value->post }}" post_id="{{ $value->id }}"><img src="{{ asset('images/edit.png') }}" alt="編集" class="example1"></a>
+        <a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="{{ asset('images/edit.png') }}" alt="編集" class="example1"></a>
     </div>
     </div>
   </div>
@@ -37,17 +35,18 @@
 
   {{ csrf_field() }}
 
-  <td><a class="btn" href="/post/{{$value->id}}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"><img src="{{ asset('images/trash-h.png') }}" alt="削除" class="example1"></a></td>
+  <td><a class="btn" href="/post/{{$post->id}}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"><img src="{{ asset('images/trash-h.png') }}" alt="削除" class="example1"></a></td>
 
   @endif
 
-  <td>{{ $value->created_at }}</td>
+  <td>{{ $post->created_at }}</td>
   <hr>
 
         <script src="main.js"></script>
 
 
 </tr>
+@endforeach
 @endforeach
 <!-- モーダルの中身 -->
     <div class="modal js-modal">

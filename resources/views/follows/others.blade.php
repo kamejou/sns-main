@@ -2,20 +2,20 @@
 @section('content')
 <div>
   <div>
-    <div><p>name</p>{{ $user -> username }}</div>
-    <div><p>dio</p>{{ $user -> bio }}</div>
+    <div><p>name</p>{{ $other -> username }}</div>
+    <div><p>dio</p>{{ $other -> bio }}</div>
   </div>
   <div class="d-flex justify-content-end flex-grow-1">
-@if (auth()->user()->isFollowing($user->id))
+@if (auth()->user()->isFollowing($other->id))
 
-        <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST">
+        <form action="{{ route('unfollow', ['id' => $other->id]) }}" method="POST">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}
 
             <button type="submit" class="btn btn-danger">フォロー解除</button>
         </form>
     @else
-        <form action="{{ route('follow', ['id' => $user->id]) }}" method="POST">
+        <form action="{{ route('follow', ['id' => $other->id]) }}" method="POST">
             {{ csrf_field() }}
 
             <button type="submit" class="btn btn-primary">フォローする</button>
@@ -26,14 +26,17 @@
 </div>
 <div>
   <div>
-    @foreach ($posts as $value)
+@foreach($users as $user)
+@foreach($user->posts as $post)
     <tr>
       <td><img src="{{ asset('images/icon1.png') }}"></td>
-      <td>{{ $value -> post }}</td>
       <td>{{ $user -> username }}</td>
-      <td>{{ $value -> created_at }}</td>
+      <td>{{ $post -> post }}</td>
+      <td>{{ $post -> created_at }}</td>
     </tr>
-    @endforeach
+  <hr>
+@endforeach
+@endforeach
   </div>
 </div>
 @endsection

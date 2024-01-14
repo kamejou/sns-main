@@ -14,21 +14,13 @@ class FollowsController extends Controller
     //
     public function followList(Request $request){
 
-        $list= Post::get();
-        $this->posts = new Post();
-        $list = $this->posts->getUserNameById();
-        $list = Post::all();
-        // 連結
-        return view('follows.followList', ['list'=>$list]);
+        $users = User::with('posts')->get();// 連結
+        return view('follows.followList', compact('users'));
     }
     public function followerList(Request $request){
 
-        $list= Post::get();
-        $this->posts = new Post();
-        $list = $this->posts->getUserNameById();
-        $list = Post::all();
-        // 連結
-        return view('follows.followerList', ['list'=>$list]);
+        $users = User::with('posts')->get();// 連結
+        return view('follows.followerList', compact('users'));
     }
 
 

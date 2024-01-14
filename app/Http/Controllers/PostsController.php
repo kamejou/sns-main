@@ -13,14 +13,8 @@ class PostsController extends Controller
 {
     public function index(Request $requests)
     {
-        $list= Post::get();
-        // dd($list);<-変数のデータ閲覧
-
-        $this->posts = new Post();
-        $list = $this->posts->getUserNameById();
-        $list = Post::all();
-        // 連結
-        return view('posts.index',['list'=>$list]);
+    $users = User::with('posts')->get();// 連結
+    return view('posts.index', compact('users'));
     }
 
 
@@ -32,16 +26,9 @@ class PostsController extends Controller
             'post' => $post,
             'user_id' => $user_id
         ]);
-        $list= Post::get();
-        // dd($list);<-変数のデータ閲覧
+        $users = User::with('posts')->get();// 連結
 
-        $this->posts = new Post();
-        $list = $this->posts->getUserNameById();
-        $list = Post::all();
-        // 連結
-
-
-        return view('posts.index',['list'=>$list]);
+    return view('posts.index', compact('users'));
 
 
     }
@@ -50,15 +37,9 @@ class PostsController extends Controller
     {
         Post::where('id', $id)->delete();
 
-        $list= Post::get();
-        // dd($list);<-変数のデータ閲覧
+        $users = User::with('posts')->get();// 連結
 
-        $this->posts = new Post();
-        $list = $this->posts->getUserNameById();
-        $list = Post::all();
-        // 連結
-
-        return view('posts.index',['list'=>$list]);
+    return view('posts.index', compact('users'));
 
     }
 

@@ -8,10 +8,10 @@ use App\User;
 class OthersController extends Controller
 {
     public function others($id){
-        $user = User::find($id);
+        $other = User::find($id);
 
-        $posts = $user->posts;
+        $users = User::with('posts')->get();// 連結
 
-        return view('follows.others', ['user'=>$user, 'posts' => $posts]);
+        return view('follows.others',compact('users','other'));
     }
 }
