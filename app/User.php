@@ -31,7 +31,7 @@ class User extends Authenticatable
 
 
  // フォロワー→フォロー
-    public function followUsers()
+    public function followers()
     {
         return $this->belongsToMany('App\User', 'Follows', 'followed_id', 'following_id')
         ->select(['users.id as user_id', 'Follows.following_id', 'Follows.followed_id']);
@@ -51,9 +51,9 @@ class User extends Authenticatable
     }
 
     // フォロー解除する
-    public function unfollow(Int $user_id)
+    public function unfollow(Int $id)
     {
-        return $this->follows()->detach($user_id);
+        return $this->follows()->detach($id);
     }
 
     // フォローしているか
@@ -63,9 +63,9 @@ class User extends Authenticatable
     }
 
     // フォローされているか
-    public function isFollowed(Int $user_id)
+    public function isFollowed(Int $id)
     {
-        return (boolean) $this->followers()->where('following_id', $user_id)->first(['id']);
+        return (boolean) $this->followers()->where('following_id', $id)->first(['id']);
     }
 
 
@@ -101,5 +101,9 @@ class User extends Authenticatable
         return $this->belongsToMany(product::class);
     }
 
+  public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 
 }

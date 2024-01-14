@@ -13,9 +13,16 @@ class Post extends Model
     ];
     public function getUserNameById()
   {
+
     return DB::table('posts')
             ->join('users', 'posts.user_id', '=', 'users.id')
             ->get();
+    // return $this->belognsTo('App\User');
   }
+
+  public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

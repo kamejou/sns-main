@@ -43,6 +43,8 @@ Route::middleware([AuthCheck::class])->group(function () {
   // followページ移動
   Route::get('/follow-list','FollowsController@followList');
   Route::get('/follower-list','FollowsController@followerList');
+  //他人ページ
+  Route::get('/others/{id}', 'OthersController@others');
 
   //投稿を押した時
   Route::post('/posts/create','PostsController@create');
@@ -61,6 +63,7 @@ Route::group(['middleware' => 'auth'], function() {
     // フォロー/フォロー解除を追加
     Route::post('users/{id}/follow', 'FollowUsersController@follow')->name('follow');
     Route::delete('users/{id}/unfollow', 'FollowUsersController@unfollow')->name('unfollow');
+
 
 });
 

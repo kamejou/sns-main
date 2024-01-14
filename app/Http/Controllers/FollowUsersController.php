@@ -25,11 +25,13 @@ class FollowUsersController extends Controller
             $follower->follow($id);
 
             // return view('users.search');
-            return redirect('/search');
+            return back();
         }
     }
     // $user->id が null または 0 の場合の処理（エラー処理やリダイレクトなど）
 }
+
+
 
 // フォロー解除
 public function unfollow($id)
@@ -45,7 +47,7 @@ public function unfollow($id)
         if ($is_following) {
             // フォローしていればフォローを解除する
             $follower->unfollow($id);
-            return redirect('/search');
+            return back();
         }
     }
     // $user->id が null または 0 の場合の処理（エラー処理やリダイレクトなど）

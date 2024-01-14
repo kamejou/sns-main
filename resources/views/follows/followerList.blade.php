@@ -1,14 +1,40 @@
 @extends('layouts.login')
 
 @section('content')
-フォロワーリスト
+<!-- br区切り線までのブロック -->
+<div>
+  <h1>Follower List</h1>
+  <!-- 大まかにフォローアイコンを囲う -->
+  <div>
+    <!-- フォロワーアイコン微調整 -->
+      @foreach ($list as $value)
+      @if(Auth::user() == Auth::user()->isFollowed($value->id))
+        <td><a class="btn" href="/others/{{$value->id}}"><img src="{{ asset('images/icon1.png') }}"></a></td>
+      @endif
+      @endforeach
+    <div>
+    </div>
+  </div>
+</div>
+<hr class="line">
 
+<br>
 
-<follow-component
-:user-id = "{{ json_encode($user->id) }}"
-:default-Followed = "{{ json_encode($defaultFollowed) }}"
-:default-Count = "{{ json_encode($defaultCount) }}"
-></follow-component>
+<div>
+  <div>
+      @foreach ($list as $value)
+      @if(Auth::user() == Auth::user()->isFollowed($value->id))
+      <tr>
+        <td><a class="btn" href="/others/{{$value->id}}"><img src="{{ asset('images/icon1.png') }}"></a></td>
+        <td>{{ $value -> username }}</td>
+        <td>{{ $value -> post }}</td>
+        <td>{{ $value -> created_at }}</td>
+      </tr>
+      <hr>
+      @endif
+      @endforeach
+  </div>
+</div>
 
 
 

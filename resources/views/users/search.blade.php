@@ -15,8 +15,7 @@
 <tr>
   <td><img src="{{ asset('images/icon1.png') }}"></td>
   <td>{{ $user->username }}</td>
-  <button type="button"></button>
-  <button type="button"></button>
+
   <div class="d-flex justify-content-end flex-grow-1">
 @if (auth()->user()->isFollowing($user->id))
 

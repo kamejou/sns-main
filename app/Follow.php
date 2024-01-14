@@ -13,6 +13,5 @@ class FollowUser extends Pivot
 {
     protected $fillable = ['following_id', 'followed_id'];
 
-    protected $table = 'follows';
-
+    protected $table = ['follows', 'followers'];
 }
