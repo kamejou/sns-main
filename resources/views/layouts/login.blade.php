@@ -41,14 +41,6 @@
                     <li><a href="/profile">プロフィール編集</a></li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
-                <a href="https://laravel.com/docs"><button class='btn btn-default'>Docs</button></a>
-                <a href="https://laracasts.com"><button class='btn btn-primary'>Laracasts</button></a>
-                <a href="https://laravel-news.com"><button class='btn btn-success'>News</button></a>
-                <a href="https://blog.laravel.com"><button class='btn btn-info'>Blog</button></a>
-                <a href="https://nova.laravel.com"><button class='btn btn-warning'>Nova</button></a>
-                <a href="https://forge.laravel.com"><button class='btn btn-danger'>Forge</button></a>
-                <a href="https://vapor.laravel.com"><button class='btn btn-link'>Vapor</button></a>
-                <a href="https://github.com/laravel/laravel"><button class='btn btn-primary'>GitHub</button></a>
             </div>
         </div>
     </header>
@@ -61,12 +53,12 @@
                 <p>{{ Auth::user()-> username }}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p>{{ \App\Follow::where('following_id', Auth::user()-> id)->count() }}名</p>
                 </div>
                 <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <p>{{ \App\Follow::where('followed_id', Auth::user()-> id)->count() }}名</p>
                 </div>
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
@@ -74,11 +66,11 @@
         </div>
     </div>
     <footer>
-        <script>
+        <!-- <script>
           $(function(){ // if document is ready
   alert('hello world')
 });
-        </script>
+        </script> -->
 
 
 
