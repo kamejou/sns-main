@@ -15,7 +15,7 @@
 @foreach($users as $user)
 @foreach($user->posts as $post)
 <tr>
-  <td><img src="{{ asset('images/icon1.png') }}"></td>
+  <td><img src="{{ asset('images/' . $user->images) }}"></td>
   <td>{{ $user->username }}</td>
   <td>{{ $post->post }}</td>
   <!-- ↓ログインしているユーザーのみ下記表示 -->
@@ -24,7 +24,8 @@
   <td>
     <div class="content">
         <!-- 投稿の編集ボタン -->
-        <a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="{{ asset('images/edit.png') }}" alt="編集" class="example1"></a>
+        <!-- <a class="js-modal-open example1" href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="{{ asset('images/edit.png') }}" alt="編集"></a> -->
+        <div class="btn js-modal-open" post="{{ $post->post }}" post_id="{{ $post->id }}">編集</div>
     </div>
     </div>
   </div>
@@ -63,10 +64,10 @@
            <a class="js-modal-close" href="">閉じる</a>
         </div>
     </div>
-<script>
+<!-- <script>
     function submitForm() {
         // フォームを送信
         document.getElementById('updateForm').submit();
     }
-</script>
+</script> -->
 @endsection

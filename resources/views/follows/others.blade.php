@@ -29,7 +29,7 @@
 @foreach($users as $user)
 @foreach($user->posts as $post)
     <tr>
-      <td><img src="{{ asset('images/icon1.png') }}"></td>
+      <td><img src="{{ asset('images/' . $user->images) }}"></td>
       <td>{{ $user -> username }}</td>
       <td>{{ $post -> post }}</td>
       <td>{{ $post -> created_at }}</td>

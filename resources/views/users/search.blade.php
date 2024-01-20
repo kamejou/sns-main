@@ -13,7 +13,7 @@
 
   @foreach ($users as $user)
 <tr>
-  <td><img src="{{ asset('images/icon1.png') }}"></td>
+  <td><img src="{{ asset('images/' . $user->images) }}"></td>
   <td>{{ $user->username }}</td>
 
   <div class="d-flex justify-content-end flex-grow-1">

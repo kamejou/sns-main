@@ -33,6 +33,7 @@ class FollowUsersController extends Controller
 
 
 
+
 // フォロー解除
 public function unfollow($id)
 {

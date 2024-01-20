@@ -10,7 +10,7 @@
 @foreach($users as $user)
 @foreach($user->posts as $post)
       @if(Auth::user() == Auth::user()->isFollowed($user->id))
-        <td><a class="btn" href="/others/{{$user->id}}"><img src="{{ asset('images/icon1.png') }}"></a></td>
+        <td><a class="btn" href="/others/{{$user->id}}"><img src="{{ asset('images/' . $user->images) }}"></a></td>
       @endif
 @endforeach
 @endforeach
@@ -28,7 +28,7 @@
 @foreach($user->posts as $post)
       @if(Auth::user() == Auth::user()->isFollowed($user->id))
       <tr>
-        <td><a class="btn" href="/others/{{$user->id}}"><img src="{{ asset('images/icon1.png') }}"></a></td>
+        <td><a class="btn" href="/others/{{$user->id}}"><img src="{{ asset('images/' . $user->images) }}"></a></td>
         <td>{{ $user -> username }}</td>
         <td>{{ $post -> post }}</td>
         <td>{{ $post -> created_at }}</td>

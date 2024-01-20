@@ -8,11 +8,11 @@
     <title></title>
     <!-- css -->
     <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
+    <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <!-- js -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <!--スマホ,タブレット対応-->
@@ -34,7 +34,7 @@
             <div class="menu">
                 <input type="checkbox" id="menu_bar01" />
                 @auth
-                <label for="menu_bar01"><p>{{ Auth::user()-> username }}さん<img src="images/arrow.png"></p></label>
+                <label for="menu_bar01"><p>{{ Auth::user()-> username }}さん<img src="{{ asset('images/' . Auth::user()->images) }}"></p></label>
                 @endauth
                 <ul id="links01">
                     <li><a href="/top">ホーム</a></li>
@@ -74,7 +74,9 @@
 
 
 
-<script>
+<!-- <script>
+
+
     export default {
         props:['userId', 'defaultFollowed', 'defaultCount'],
         data() {
@@ -115,7 +117,7 @@
           }
         }
     }
-</script>
+</script> -->
 
 
     </footer>
