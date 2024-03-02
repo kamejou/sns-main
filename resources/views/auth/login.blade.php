@@ -2,21 +2,24 @@
 
 @section('content')
 
-{!! Form::open() !!}
 
-<p>AtlasSNSへようこそ</p>
+<div id="usu_box">
+  <div id="from_box">
+    <p class="white h3">AtlasSNSへようこそ</p>
+    <form action="/login" method="get">
+      <label for="mail" class="white">mail adress</label>
+      <input type="text" name="mail" id="mail" class="input">
 
-{{ Form::label('e-mail') }}
-{{ Form::text('mail',null,['class' => 'input']) }}
-{{ Form::label('password') }}
-{{ Form::password('password',['class' => 'input']) }}
+      <label for="password" class="white">password</label>
+      <input type="password" name="password" id="password" class="input">
 
-{{ Form::submit('ログイン') }}
+      <button type="submit" class="white button_red button">LOGIN</button>
 
-<form name="Login" method="post" action="/cgi-bin/Login.cgi"></form>
-<p><a href="/register">新規ユーザーの方はこちら</a></p>
+      <form name="Login" method="post" action="/cgi-bin/Login.cgi"></form>
+    </form>
 
+    <p class="url"><a href="/register" class="white">新規ユーザーの方はこちら</a></p>
 
-{!! Form::close()!!}
-
+  </div>
+</div>
 @endsection

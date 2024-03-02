@@ -4,30 +4,410 @@ html {}
 
 body {}
 
+a {}
+
+p {
+    font-size: 17px;
+}
+
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.back_white {
+    background-color: #fff;
+}
+
+.grey {
+    color: #a0a0a0;
+}
+
+.black {
+    color: black;
+    font-size: 15px;
+}
+
 /* header */
+.main-menu {
+    height: 100px;
+    display: flex;
+}
+
+.main_item {
+    position: absolute;
+    top: 28px;
+    right: 20px;
+}
+
 header {
+    top: 0;
+    width: 100%;
     background: #186AC9;
+    align-items: center;
+}
+
+
+h1 img {
+    width: 140px;
+    height: 45px;
+}
+
+#haji {
+    margin: 0 0 0 auto;
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* main content */
 #row {
     display: flex;
-    flex-flow: row wrap;
+    justify-content: space-between;
 }
 
 #container {
     flex: 0 0 80%;
+    background-color: #fff;
 }
 
 #side-bar {
-    flex: 0 0 19%;
+    flex: 0 0 20%;
+    background-color: #fff;
     border-left: 1px solid #727272;
 }
 
+.whole {
+    display: flex;
+    justify-content: space-between;
+}
+
+.more_left {
+    flex: 0 0 10%;
+    padding-left: 12%;
+}
+
+.left {
+    flex: 0 0 70%;
+    padding-left: 20px;
+}
+
+.left_other {
+    flex: 0 0 40%;
+}
+
+.right_other {
+    flex: 0 0 10%;
+    padding-top: 35px;
+    padding-left: 70px;
+}
+
+.right {
+    flex: 0 0 20%;
+}
+
+.right_top {
+    position: relative;
+}
+
+.item-list {
+    display: flex;
+    justify-content: center;
+    /* 中央寄せ */
+}
+
+.item-list .item {
+    box-sizing: border-box;
+}
+
+.top {
+    padding-top: 50px;
+    padding-right: 50px;
+}
+
+.top_other {
+    padding-top: 15px;
+}
+
+.breadth {
+    width: 70%;
+}
+
+.center {
+    display: block;
+    margin: 0 auto;
+}
+
+.sp-menu__list {
+    justify-content: center;
+    align-items: center;
+}
+
+.right_btn {
+    display: block;
+    margin: 0 0 0 40%;
+}
+
+.follow-info {
+    display: flex;
+    align-items: center;
+}
+
+.follow-info p {
+    margin-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    flex: 1;
+}
+
+.account_top {
+    margin: 20px 0 10px 20px;
+}
+
+.post_icon {
+    padding-left: 10%;
+    padding-top: 40px;
+    display: flex;
+}
+
+.post_item {
+    width: 80%;
+    height: 50%;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.back_blue {
+    color: #fff;
+    background-color: darkblue;
+}
+
+.post_btn {
+    padding-top: 50px;
+    padding-left: 30%;
+}
+
+textarea.abyss {
+    font-size: 20px;
+}
+
+.abyss::placeholder {
+    font-size: 20px;
+    color: #666666;
+    opacity: 0.4;
+}
+
+.flex_follow {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.icon_width {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    margin: 0 0 0 10%;
+    padding: 0;
+    border: 2px solid #ED303D;
+}
+
+.icon_width .icon_one {
+    margin: 5px;
+}
+
+.icon_width:nth-child(5n+1) {
+    clear: both;
+}
+
+.profile_margin {
+    margin-left: 20%;
+}
+
+.profile_input_item {
+    margin-right: 40%
+}
+
+.profile_input_item form {
+    width: 500px;
+}
+
+.input_item {
+    background-color: #727272;
+}
+
+.profile_top {
+    margin-top: 50px;
+}
+
+input[type=file].input_item {
+    display: none;
+}
+
+input[type=file].file-input {
+    display: none;
+}
+
+.btn-experiece-primary {
+    background-color: #6CCBE9;
+    color: #FFFFFF;
+}
+
+.btn_button {
+    width: 165px;
+    transition: 0.3s;
+    font-family: 'NotoSansCJKjp-Medium-Subset';
+}
+
+.file-name {
+    display: inline-block;
+    width: 75%;
+    margin-left: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 12px;
+}
+
+.upload-label {
+    display: inline-block;
+    cursor: pointer;
+    /* カーソルを指に */
+    background: #ebebeb;
+    /* 背景色 */
+    color: #FFF;
+    /* 文字色 */
+    font-size: 0.95em;
+    /* フォントサイズ */
+    transition: 0.2s;
+    /* ホバーをなめらかに */
+    width: 350px;
+    height: 100px;
+    border: 1px solid #000;
+    position: relative;
+}
+
+.p_size {
+    width: 180px;
+    height: 40px;
+    font-size: 25px;
+    background-color: #fafafa;
+    position: absolute;
+    top: 30%;
+    left: 22%;
+    color: #a0a0a0;
+}
+
+.upload-label input {
+    display: none;
+}
+
+/* +++++++++++++++++++++++++++++++++++++++++++ */
+
+.input {
+    background-color: #f0f0f0;
+    border-width: thin;
+    width: 350px;
+    height: 40px;
+}
+
+
+.input_btn {
+    border: none;
+    border-radius: 8px;
+    width: 180px;
+    height: 45px;
+    background-color: #ED303D;
+    color: #fff;
+    font-size: 20px;
+}
+
+.btn_block {
+    margin-left: 20%;
+}
+
+
+
+.margin_top {
+    margin-top: 40px;
+}
+
+.margin_left_follow {
+    margin-left: 5%;
+}
+
+.margin_left {
+    margin-left: 30px;
+}
+
+.width_item {
+    width: 200px;
+}
+
+.margin_left_item {
+    margin-left: 30%;
+}
+
+.profile_item {
+    margin-top: 8px;
+}
+
+.font_item {
+    font-size: 25px;
+}
+
 /* ------------------------------------- */
-.example1 {
+.img_p {
+    width: 100px;
+    height: 105px;
+    object-fit: cover;
+    position: absolute;
+    /* 左端を親要素の50%に配置 */
+    transform: translate(-45%, -54%);
+}
+
+.img_ed {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    position: absolute;
+    transform: translate(-45%, 5%);
+}
+
+.img_de {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    position: absolute;
+    transform: translate(-53%, -10%);
+}
+
+.img_tr {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    position: absolute;
+    transform: translate(-50%, 5%);
+}
+
+.img_icon {
+    width: 48px;
+    height: 48px;
+}
+
+.box img:last-of-type {
+    opacity: 0;
+    transition: opacity .1s;
+}
+
+.box:hover img {
+    opacity: 1;
+}
+
+.example1,
+.btn {
     width: 50px;
     height: 50px;
+    overflow: hidden;
 }
 
 .line {
@@ -35,108 +415,15 @@ header {
     background-color: darkgrey;
 }
 
+.line2 {
+    height: 2px;
+    background-color: darkgrey;
+}
+
 /* ------------------------------------- */
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*アコーディオン全体*/
-.menu {
-    width: 10%;
-    padding: 10px 10px 20px;
-}
-
-.menu input {
-    display: none;
-    /*チェックボックスを隠す*/
-}
-
-/*バー部分*/
-.menu label {
-    cursor: pointer;
-    display: block;
-    text-decoration: none;
-    line-height: 1;
-    position: relative;
-    margin: 0 0 10px;
-    padding: 10px;
-    color: #fff;
-}
-
-/*開いたときに表示される部分*/
-.menu ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    margin-bottom: 1px;
-}
-
-.menu li {
-    height: 0;
-    overflow-y: hidden;
-    transition: padding-bottom 0.5s, padding-top 0.5s;
-    /*閉じるときのアニメーション*/
-    -webkit-transition: padding-bottom 0.5s, padding-top 0.5s;
-    -moz-transition: padding-bottom 0.5s, padding-top 0.5s;
-    -ms-transition: padding-bottom 0.5s, padding-top 0.5s;
-    -o-transition: padding-bottom 0.5s, padding-top 0.5s;
-}
-
-#menu_bar01:checked~#links01 li,
-#menu_bar02:checked~#links02 li {
-    height: auto;
-    /*開いたときに表示されるliの高さ*/
-    opacity: 1;
-    background: #f1f1f1;
-    padding: 10px;
-}
-
-/*開いたときの下の余白*/
-#menu_bar01:checked~#links01 li:last-child,
-#menu_bar02:checked~#links02 li:last-child {
-    margin-bottom: 20px;
-}
-
-/*閉じた状態の矢印描画*/
-.menu label:after {
-    content: "";
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-top: #fff 2px solid;
-    border-right: #fff 2px solid;
-    -webkit-transform: rotate(135deg);
-    -ms-transform: rotate(135deg);
-    transform: rotate(135deg);
-    position: absolute;
-    right: 2%;
-    top: 0;
-    bottom: 15%;
-    margin: auto;
-}
-
-/*開いた状態の矢印描画*/
-.menu input[type=checkbox]:checked+label:after {
-    content: "";
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-top: #fff 2px solid;
-    border-right: #fff 2px solid;
-    -webkit-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-    position: absolute;
-    right: 2%;
-    top: 7%;
-    bottom: 0;
-    margin: auto;
-}
-
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /* 必要に応じて編集しご自身でSNS課題のレイアウトのようにカスタマイズしてください。 */
-.content {
-    margin: 0 auto;
-    padding: 40px;
-}
+
 
 .modal {
     display: none;
@@ -161,4 +448,161 @@ header {
     top: 50%;
     transform: translate(-50%, -50%);
     width: 60%;
+}
+
+.side_btn {
+    text-align: center;
+    background-color: #186AC9;
+    border-radius: 8px;
+    width: 150px;
+    height: 40px;
+    border: none;
+}
+
+.white {
+    color: rgba(255, 255, 255);
+}
+
+.abyss {
+    border: none;
+    resize: none;
+    outline: 0;
+    width: 400px;
+    height: 50px;
+}
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*アコーディオン全体*/
+.toggle {
+    display: none;
+}
+
+.user_name_item {
+    position: absolute;
+    top: 35px;
+    right: 140px;
+    font-size: 24px;
+}
+
+.Label {
+    /*タイトル*/
+    color: #fff;
+    position: absolute;
+    top: 40px;
+    right: 70px;
+}
+
+.Label::before {
+    /*タイトル横の矢印*/
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-top: 3px solid #fff;
+    border-right: 3px solid #fff;
+    -webkit-transform: rotate(45deg);
+    position: absolute;
+    right: 20px;
+    transform: rotate(135deg);
+}
+
+.Label,
+.content {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateY(0);
+    transition: all 0.5s;
+}
+
+.content {
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 100px;
+    right: 0;
+}
+
+.toggle:checked+.Label+.content {
+    /*開閉時*/
+    height: auto;
+    padding: 0;
+    transition: all .5s;
+}
+
+.toggle:checked+.Label::before {
+    transform: rotate(-45deg) !important;
+}
+
+.sp-menu__list {
+    width: 304px;
+}
+
+.sp-menu__item {
+    width: 304px;
+    height: 100px;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid #000;
+}
+
+.sp-menu__link {}
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.btn-danger,
+.btn-primary {
+    width: 130px;
+    height: 40px;
+}
+
+.flex_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+/* +++++++++++++++++++++検索ボタン++++++++++++++++++++++++++++ */
+.textbox {
+    width: 350px;
+    padding: 10px 10px;
+    border-radius: 3px;
+    font-size: 20px;
+    border: 2px solid #a0a0a0;
+}
+
+.search_box {
+    display: inline-block;
+    /* なくても大丈夫だけど、念の為 */
+    position: relative;
+    /* 基準値とする */
+}
+
+.search_box::before {
+    content: "";
+    /* 疑似要素に必須 */
+    width: 16px;
+    /* アイコンの横幅 */
+    height: 16px;
+    /* アイコンの高さ */
+    background: url(./icon.png) no-repeat center center / auto 100%;
+    /* 背景にアイコン画像を配置 */
+    display: inline-block;
+    /* 高さを持たせるためにインラインブロック要素にする */
+    position: absolute;
+    /* 相対位置に指定 */
+    top: 4px;
+    left: 5px;
+}
+
+.search_box input {
+    padding: 3px 0 3px 2em;
+    /* アイコンを設置するため左の余白を多めに指定*/
+}
+
+/* +++++++++++++++++++++検索ボタン++++++++++++++++++++++++++++ */
+.relative-content {
+    position: relative;
+}
+
+.relative-content-2 {
+    left: 85%;
+    bottom: 70px;
 }

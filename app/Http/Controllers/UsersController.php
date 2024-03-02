@@ -45,7 +45,7 @@ class UsersController extends Controller
             'mail' => 'required|string|email|min:1|max:40|unique:users,mail,' . $user->id,
             'password' => 'sometimes|required|string|min:1|max:20|confirmed',
             'bio' => 'nullable|string',
-            'images' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
         // バリデーションを実行
         $request->validate($rules, $messages);
@@ -61,10 +61,12 @@ class UsersController extends Controller
         ];
         //アイコン変更処理
         if ($request->hasFile('images')) {
-        $avatar = $request->file('images');
-        $avatarPath = $avatar->store('images', 'public'); // 'avatars'は保存先のディレクトリです
-        $userDate->avatar = $avatarPath;
-    }
+            $avatar = $request->file('images');
+            $avatarPath = $avatar->store('images', 'public'); // 'avatars'は保存先のディレクトリです
+            $userData->avatar = $avatarPath;
+        }else{
+            $userData['avatar'] = $user->avatar;
+        }
         // パスワードが入力されていればハッシュ化して保存
         if ($request->filled('password')) {
             $userData['password'] = Hash::make($request->input('password'));

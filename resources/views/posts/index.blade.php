@@ -3,50 +3,54 @@
 @section('content')
 <form action="/posts/create" method="POST">
    @csrf
-  <textarea name="content" placeholder="内容の入力"></textarea>
-  <div class="pull-right">
-    <button class="btn btn-success">
-      <img src="{{ asset('images/post.png') }}" alt="投稿する"  class="example1">
-    </button>
+  <div class="post_icon">
+    <div class="">
+      <img src="{{ asset('images/' . Auth::user()->images) }}" class="example1">
+    </div>
+    <div class="post_item">
+      <textarea name="content" placeholder="投稿内容を入力してください。" class="abyss"></textarea>
+    </div>
+    <div class="post_item post_btn"><!-- " -->
+      <button class="btn btn-success">
+        <img src="{{ asset('images/post.png') }}" alt="投稿する"  class="img_p">
+      </button>
+    </div>
   </div>
 </form>
- <h2>投稿一覧</h2>
  <hr class="line">
 @foreach($users as $user)
 @foreach($user->posts as $post)
-<tr>
-  <td><img src="{{ asset('images/' . $user->images) }}"></td>
-  <td>{{ $user->username }}</td>
-  <td>{{ $post->post }}</td>
+<div class="whole">
+  <div class="more_left"><img src="{{ asset('images/' . $user->images) }}" class="example1"></div>
+  <div class="left">
+    <div class="black">{{ $user->username }}</div>
+    <div class="breadth">{{ $post->post }}</div>
+  </div>
+  <div class="right">
+    <div class="right_top">{{ substr($post->created_at , 0, 16)}}</div>
   <!-- ↓ログインしているユーザーのみ下記表示 -->
   @if (Auth::user()->id == $user->id)
   <!-- ↓編集ボタンをクリックしたときのモーダル -->
-  <td>
-    <div class="content">
+  <div class="right top">
+    <div class="item-list">
+      <div class="item">
         <!-- 投稿の編集ボタン -->
-        <!-- <a class="js-modal-open example1" href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="{{ asset('images/edit.png') }}" alt="編集"></a> -->
-        <div class="btn js-modal-open" post="{{ $post->post }}" post_id="{{ $post->id }}">編集</div>
-    </div>
+        <div class="btn js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}">
+          <img src="{{ asset('images/edit.png') }}" alt="編集" class="img_ed">
+        </div>
+      </div>
+      <div class="item">
+        <a class="btn box" href="/post/{{$post->id}}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">
+          <img src="{{ asset('images/trash.png') }}" alt="削除" class="img_tr">
+          <img src="{{ asset('images/trash-h.png') }}" alt="削除" class="img_de">
+        </a>
+      </div>
     </div>
   </div>
+
+    @endif</div>
 </div>
-
-
-  </td>
-
-  {{ csrf_field() }}
-
-  <td><a class="btn" href="/post/{{$post->id}}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')"><img src="{{ asset('images/trash-h.png') }}" alt="削除" class="example1"></a></td>
-
-  @endif
-
-  <td>{{ $post->created_at }}</td>
-  <hr>
-
-        <script src="main.js"></script>
-
-
-</tr>
+<hr class="line2">
 @endforeach
 @endforeach
 <!-- モーダルの中身 -->
@@ -70,4 +74,5 @@
         document.getElementById('updateForm').submit();
     }
 </script> -->
+
 @endsection

@@ -47,7 +47,7 @@ class LoginController extends Controller
     }
 
     public function login(Request $request){
-        if($request->isMethod('post')){
+        if($request->isMethod('get')){
 
             $data=$request->only('mail','password');
             // ログインが成功したら、トップページへ

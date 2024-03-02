@@ -1,26 +1,30 @@
 @extends('layouts.logout')
 
 @section('content')
+<div id="usu_box">
+  <div id="from_box">
+    <form method="POST" action="">
+    <h2  class="white h3">新規ユーザー登録</h2>
 
-{!! Form::open() !!}
+        <label for="username" class="white">ユーザー名</label>
+        <input type="text" name="username" class="input" value="">
 
-<h2>新規ユーザー登録</h2>
+        <label for="email" class="white">メールアドレス</label>
+        <input type="email" name="email" class="input" value=""> {{-- 'mail' を 'email' に修正 --}}
 
-{{ Form::label('username', 'ユーザー名')}}
-{{ Form::text('username',null,['class' => 'input']) }}
+        <label for="password" class="white">パスワード</label>
+        <input type="password" name="password" class="input">
 
-{{ Form::label('email', 'メールアドレス') }}
-{{ Form::email('mail',null,['class' => 'input']) }}
+        <label for="password_confirm" class="white">パスワード確認</label>
+        <input type="password" name="password_confirmation" class="input">
 
-{{ Form::label('password', 'パスワード') }}
-{{ Form::password('password',['class' => 'input']) }}
+        <button type="submit" class="white button_red button register">REGISTER</button>
 
-{{ Form::label('password_confirm', 'パスワード確認') }}
-{{ Form::password('password_confirmation',['class' => 'input']) }}
+        <p class="url"><a href="/login"  class="white">ログイン画面へ戻る</a></p>
 
-{{ Form::submit('登録') }}
-
-<p><a href="/login">ログイン画面へ戻る</a></p>
+    </form>
+  </div>
+</div>
 
 @if($errors->any())
     <div class="alert alert-danger">

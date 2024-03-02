@@ -1,22 +1,27 @@
 @extends('layouts.login')
 @section('content')
-<form action="/search" method="GET" >
-    <input type="text" name="username" placeholder="ユーザー名を入力" name="search" value="">
-    <div>
-        <button type="submit">検索</a></button>
-    </div>
-</form>
-@if(isset($search))
-    <h2>検索結果: "{{ $search }}"</h2>
-@endif
+<div class="flex_container margin_left margin_top">
+  <form action="/search" method="GET" >
+      <input type="text" name="username" class="textbox" placeholder="ユーザー名" name="search" value="">
+      <button type="submit" value="submit" class="search_box">
+        <span class="material-symbols-outlined"><img src="{{ asset('images/search_360.png') }}" alt="search" class="example1"></span>
+      </button>
+  </form>
+  <div class="margin_left_item">
+    @if(isset($search))
+      <h2>検索ワード　:　{{ $search }}</h2>
+    @endif
+  </div>
+</div>
 <br>
+ <hr class="line">
 
   @foreach ($users as $user)
-<tr>
-  <td><img src="{{ asset('images/' . $user->images) }}"></td>
-  <td>{{ $user->username }}</td>
+<div class="flex_container margin_top center margin_left_item">
+  <div><img src="{{ asset('images/' . $user->images) }}" class="example1"></div>
+  <div class="margin_left width_item font_item">{{ $user->username }}</div>
 
-  <div class="d-flex justify-content-end flex-grow-1">
+  <div class="">
 @if (auth()->user()->isFollowing($user->id))
 
         <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST">
@@ -32,11 +37,11 @@
             <button type="submit" class="btn btn-primary">フォローする</button>
         </form>
     @endif
-    </div>
+</div>
 
   <br>
-</tr>
 
+</div>
 
 @endforeach
 
