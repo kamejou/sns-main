@@ -22,7 +22,7 @@
 <body id="background">
   <div class="container">
     <div class="child">
-      <header id="header">
+      <header id="header" class="top_header">
         <h1 class="container"><img src="{{ asset('images/atlas.png') }}" width="150" height="60"></h1>
         <h2 class="white logout_title">Social Network Service</h2>
       </header>

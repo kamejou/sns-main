@@ -16,10 +16,10 @@
   <h1 class="margin_left_follow">Follow List</h1>
   <!-- フォロワーアイコン微調整 -->
   <div class="icon_width clearfix">
-@foreach($sortedPosts as $post)
-    @if(Auth::user()->isFollowing($post->user->id))
-        <a class="icon_one" href="/others/{{$post->user->id}}">
-          <img src="{{ asset('images/' . $post->user->images) }}" class="example1">
+@foreach($users as $user)
+    @if(Auth::user()->isFollowing($user->id))
+    <a class="icon_one" href="/others/{{$user->id}}" class="">
+      <img src="{{ asset('images/' . $user->images) }}" class="example1">
         </a>
     @endif
 @endforeach
