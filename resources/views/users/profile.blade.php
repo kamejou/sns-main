@@ -47,7 +47,7 @@
         <div class="profile_input_item">
             <label class="upload-label">
                 <p class="p_size">ファイルを選択</p>
-                <input type="file" name="images" class="input">
+                {{ Form::file('images', ['class' => 'input']) }}
             </label>
         </div>
     </div>

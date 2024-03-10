@@ -1,6 +1,16 @@
 @extends('layouts.login')
 
 @section('content')
+@php
+    // ユーザーの全ての投稿を取得する
+    $allPosts = collect();
+    foreach($users as $user) {
+        $allPosts = $allPosts->concat($user->posts);
+    }
+
+    // 投稿を作成日時の降順に並べ替える
+    $sortedPosts = $allPosts->sortByDesc('created_at');
+@endphp
 <form action="/posts/create" method="POST">
    @csrf
   <div class="post_icon">
@@ -18,18 +28,17 @@
   </div>
 </form>
  <hr class="line">
-@foreach($users as $user)
-@foreach($user->posts as $post)
+@foreach($sortedPosts as $post)
 <div class="whole">
-  <div class="more_left"><img src="{{ asset('images/' . $user->images) }}" class="example1"></div>
+  <div class="more_left"><img src="{{ asset('images/' . $post->user->images) }}" class="example1"></div>
   <div class="left">
-    <div class="black">{{ $user->username }}</div>
+    <div class="black">{{ $post->user->username }}</div>
     <div class="breadth">{{ $post->post }}</div>
   </div>
   <div class="right">
     <div class="right_top">{{ substr($post->created_at , 0, 16)}}</div>
   <!-- ↓ログインしているユーザーのみ下記表示 -->
-  @if (Auth::user()->id == $user->id)
+  @if (Auth::user()->id == $post->user->id)
   <!-- ↓編集ボタンをクリックしたときのモーダル -->
   <div class="right top">
     <div class="item-list">
@@ -51,7 +60,6 @@
     @endif</div>
 </div>
 <hr class="line2">
-@endforeach
 @endforeach
 <!-- モーダルの中身 -->
     <div class="modal js-modal">

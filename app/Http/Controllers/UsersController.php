@@ -28,8 +28,9 @@ class UsersController extends Controller
     {
         //ユーザー取得
         $user = Auth::user();
+        $request->validate(
         //バリデーションメッセージ
-        $messages = [
+        [
             'required' => ':attribute は必須です。',
             'string' => ':attribute は文字列である必要があります。',
             'min' => ':attribute は:min文字以上である必要があります。',
@@ -38,18 +39,16 @@ class UsersController extends Controller
             'unique' => ':attribute は既に存在します。',
             'confirmed' => 'パスワードが一致していません。',
             'bio' => ':attribute が書いていない'
-        ];
+        ],
         //ルール設定
-        $rules = [
+        [
             'username' => 'required|string|min:1|max:100',
             'mail' => 'required|string|email|min:1|max:40|unique:users,mail,' . $user->id,
-            'password' => 'sometimes|required|string|min:1|max:20|confirmed',
+            'password' => 'nullable|sometimes|required|string|min:1|max:20|confirmed',
             'bio' => 'nullable|string',
-            'images' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ];
+            'images' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
         // バリデーションを実行
-        $request->validate($rules, $messages);
-
         //自己紹介文
 // ddd($request->input('bio'));
         // リクエストデータから必要な情報を取得
@@ -60,13 +59,27 @@ class UsersController extends Controller
 
         ];
         //アイコン変更処理
-        if ($request->hasFile('images')) {
-            $avatar = $request->file('images');
-            $avatarPath = $avatar->store('images', 'public'); // 'avatars'は保存先のディレクトリです
-            $userData->avatar = $avatarPath;
-        }else{
-            $userData['avatar'] = $user->avatar;
+        // if ($request->hasFile('images')) {
+        //     $avatar = $request->input('images');
+        //     $avatarPath = $avatar->store('images', 'public');
+        //     $userData->avatar = $avatarPath;
+        // }else{
+        //     $userData['avatar'] = $user->avatar;
+        // }
+        // $icon = ['images' => $request->input('images')];
+        // if($icon !== null){
+        //     $userData = ['images' => $request->file('images')];
+        // }
+        // if(is_null($icon)) {
+        //     $icon = Auth::user('images');
+        //     $userData = ['images' => $request->file('images')];
+        // }
+        if ($request->filled('images')) {
+            $avatar = $request->input('images');
+            $userData['images'] = $avatar;
         }
+
+
         // パスワードが入力されていればハッシュ化して保存
         if ($request->filled('password')) {
             $userData['password'] = Hash::make($request->input('password'));
