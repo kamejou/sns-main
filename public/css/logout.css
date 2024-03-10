@@ -17,6 +17,29 @@
     margin-top: 200px;
 }
 
+.from_box {
+    text-align: center;
+}
+
+.right_p1 {
+    margin-left: 40px;
+}
+
+.right_p2 {
+    margin-left: 30px;
+}
+
+.login_btn {}
+
+.url1 {
+    font-size: 15px;
+    text-align: center;
+    width: 200px;
+    height: 40px;
+    font-size: 12px;
+    padding: 10% 10% 10% 25%;
+}
+
 /* ---------------------id---------------------- */
 /* ---------------------class----------------------- */
 
@@ -64,9 +87,19 @@
     padding: 10% 10% 0 20%;
 }
 
+.h4 {
+    font-size: 18px;
+    padding: 10% 10% 0 40%;
+}
+
+.h5 {
+    font-size: 17px;
+    padding: 3% 10% 10% 20%;
+}
+
 .url {
     font-size: 15px;
-    padding: 10% 10% 10% 20%;
+    padding: 10% 10% 10% 30%;
 }
 
 
@@ -101,6 +134,16 @@ input {
 
 button {
     margin: 20px 20px 0 100px;
+}
+
+.button1 {
+    display: inline-block;
+    border-radius: 8px;
+    font-size: 15px;
+    text-align: center;
+    border: none;
+    padding: .4em 20px;
+    margin: 20px 0 10px 75px;
 }
 
 /* ---------------------その他----------------------- */

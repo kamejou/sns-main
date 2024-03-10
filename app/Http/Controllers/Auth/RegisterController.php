@@ -60,6 +60,7 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
+
     /**
      * Create a new user instance after a valid registration.
      *
