@@ -16,33 +16,31 @@
 <br>
  <hr class="line">
 
-  @foreach ($users as $user)
-<div class="flex_container margin_top center margin_left_item">
-  <div><img src="{{ asset('images/' . $user->images) }}" class="example1"></div>
-  <div class="margin_left width_item font_item">{{ $user->username }}</div>
+@foreach ($users as $user)
+  @if ($user->id !== auth()->user()->id)
+    <div class="flex_container margin_top center margin_left_item">
+      <div><img src="{{ asset('images/' . $user->images) }}" class="example1"></div>
+      <div class="margin_left width_item font_item">{{ $user->username }}</div>
 
-  <div class="">
-@if (auth()->user()->isFollowing($user->id))
+      <div class="">
+        @if (auth()->user()->isFollowing($user->id))
+          <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST">
+              {{ csrf_field() }}
+              {{ method_field('DELETE') }}
 
-        <form action="{{ route('unfollow', ['id' => $user->id]) }}" method="POST">
-            {{ csrf_field() }}
-            {{ method_field('DELETE') }}
+              <button type="submit" class="btn btn-danger">フォロー解除</button>
+          </form>
+        @else
+          <form action="{{ route('follow', ['id' => $user->id]) }}" method="POST">
+              {{ csrf_field() }}
 
-            <button type="submit" class="btn btn-danger">フォロー解除</button>
-        </form>
-    @else
-        <form action="{{ route('follow', ['id' => $user->id]) }}" method="POST">
-            {{ csrf_field() }}
-
-            <button type="submit" class="btn btn-primary">フォローする</button>
-        </form>
-    @endif
-</div>
-
-  <br>
-
-</div>
-
+              <button type="submit" class="btn btn-primary">フォローする</button>
+          </form>
+        @endif
+      </div>
+      <br>
+    </div>
+  @endif
 @endforeach
 
 <script>

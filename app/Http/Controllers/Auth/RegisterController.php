@@ -48,9 +48,17 @@ class RegisterController extends Controller
     public function register(Request $request){
         if($request->isMethod('post')){
             $request->validate([
-                'username' => 'required|string|min:2|max:10',
-                'mail' => 'required|string|email|min:5|max:40|unique:users',
-                'password' => 'required|string|min:8|max:20|confirmed',
+            'required' => ':attribute は必須です。',
+            'string' => ':attribute は文字列である必要があります。',
+            'min' => ':attribute は:min文字以上である必要があります。',
+            'max' => ':attribute は:max文字以内である必要があります。',
+            'email' => ':attribute は有効なメールアドレスである必要があります。',
+            'unique' => ':attribute は既に存在します。',
+            'confirmed' => 'パスワードが一致していません。',
+        ],[
+            'username' => 'required|string|min:2|max:10',
+            'mail' => 'required|string|email|min:5|max:40|unique:users',
+            'password' => 'required|string|min:8|max:20|confirmed',
             ]);
 
             $data = $request->input();
@@ -68,10 +76,37 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
-        return User::create([
-            'username' => $data['username'],
-            'mail' => $data['mail'],
-            'password' => bcrypt($data['password']),
-        ]);
-    }}
+{
+    $validator = \Illuminate\Support\Facades\Validator::make($data, [
+        'username' => 'required|string|min:2|max:10',
+        'mail' => 'required|string|email|min:5|max:40|unique:users',
+        'password' => 'required|string|min:8|max:20|confirmed',
+    ], [
+        'username.required' => ':attribute は必須です。',
+        'username.string' => ':attribute は文字列である必要があります。',
+        'username.min' => ':attribute は:min文字以上である必要があります。',
+        'username.max' => ':attribute は:max文字以内である必要があります。',
+        'mail.required' => ':attribute は必須です。',
+        'mail.string' => ':attribute は文字列である必要があります。',
+        'mail.email' => ':attribute は有効なメールアドレスである必要があります。',
+        'mail.min' => ':attribute は:min文字以上である必要があります。',
+        'mail.max' => ':attribute は:max文字以内である必要があります。',
+        'mail.unique' => ':attribute は既に存在します。',
+        'password.required' => ':attribute は必須です。',
+        'password.string' => ':attribute は文字列である必要があります。',
+        'password.min' => ':attribute は:min文字以上である必要があります。',
+        'password.max' => ':attribute は:max文字以内である必要があります。',
+        'password.confirmed' => 'パスワードが一致していません。',
+    ]);
+
+    if ($validator->fails()) {
+        throw new \Illuminate\Validation\ValidationException($validator);
+    }
+
+    return User::create([
+        'username' => $data['username'],
+        'mail' => $data['mail'],
+        'password' => bcrypt($data['password']),
+    ]);
+}
+}
