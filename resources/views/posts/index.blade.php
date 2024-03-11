@@ -72,19 +72,23 @@
 </div>
 <hr class="line2">
 @endforeach
+
 <!-- モーダルの中身 -->
     <div class="modal js-modal">
         <div class="modal__bg js-modal-close"></div>
-        <div class="modal__content">
+        <div class="modal__content box_modal2">
            <form action="modal-update" method="POST">
-                <textarea name="post" class="modal_post"></textarea>
+            <div class=" box_modal1">
+                <textarea name="post" class="modal_post box_modal_text"></textarea>
+            </div>
                 <input type="hidden" name="id" class="modal_id" value="post_id">
-                <button type="submit">
-                  <img src="{{ asset('images/edit.png') }}" alt="更新">
-                </button>
+                <div class="example">
+                  <button type="submit block_modal">
+                    <img src="{{ asset('images/edit.png') }}" alt="更新" class="img_ed">
+                  </button>
+                </div>
                 {{ csrf_field() }}
            </form>
-           <a class="js-modal-close" href="">閉じる</a>
         </div>
     </div>
 <!-- <script>

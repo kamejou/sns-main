@@ -606,3 +606,30 @@ input[type=file].file-input {
     left: 85%;
     bottom: 70px;
 }
+
+.box_modal1 {
+    border: 1px solid #000;
+}
+
+.box_modal2 {
+    width: 800px;
+    height: 400px;
+    border-radius: 20px;
+}
+
+.box_modal_text {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    resize: none;
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    width: 730px;
+    height: 260px;
+}
+
+.example {
+    text-align: center;
+}
