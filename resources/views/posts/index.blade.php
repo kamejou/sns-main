@@ -18,7 +18,7 @@
       <img src="{{ asset('images/' . Auth::user()->images) }}" class="example1">
     </div>
     <div class="post_item">
-      <textarea name="content" placeholder="投稿内容を入力してください。" class="abyss"></textarea>
+      <textarea name="post" placeholder="投稿内容を入力してください。" class="abyss"></textarea>
     </div>
     <div class="post_item post_btn"><!-- " -->
       <button class="btn btn-success">

@@ -48,18 +48,26 @@ class RegisterController extends Controller
     public function register(Request $request){
         if($request->isMethod('post')){
             $request->validate([
-            'required' => ':attribute は必須です。',
-            'string' => ':attribute は文字列である必要があります。',
-            'min' => ':attribute は:min文字以上である必要があります。',
-            'max' => ':attribute は:max文字以内である必要があります。',
-            'email' => ':attribute は有効なメールアドレスである必要があります。',
-            'unique' => ':attribute は既に存在します。',
-            'confirmed' => 'パスワードが一致していません。',
-        ],[
-            'username' => 'required|string|min:2|max:10',
-            'mail' => 'required|string|email|min:5|max:40|unique:users',
-            'password' => 'required|string|min:8|max:20|confirmed',
-            ]);
+        'username' => 'required|string|min:2|max:10',
+        'mail' => 'required|string|email|min:5|max:40|unique:users',
+        'password' => 'required|string|min:8|max:20|confirmed',
+    ], [
+        'username.required' => 'ユーザー名は必須です。',
+        'username.string' => 'ユーザー名は文字列である必要があります。',
+        'username.min' => 'ユーザー名は:min文字以上である必要があります。',
+        'username.max' => 'ユーザー名は:max文字以内である必要があります。',
+        'mail.required' => 'メールアドレスは必須です。',
+        'mail.string' => 'メールアドレスは文字列である必要があります。',
+        'mail.email' => '有効なメールアドレスを使用してください。',
+        'mail.min' => 'メールアドレスは:min文字以上である必要があります。',
+        'mail.max' => 'メールアドレスは:max文字以内である必要があります。',
+        'mail.unique' => '既に存在するメールアドレスです。',
+        'password.required' => 'パスワードは必須です。',
+        'password.string' => 'パスワードは文字列である必要があります。',
+        'password.min' => 'パスワードは:min文字以上である必要があります。',
+        'password.max' => 'パスワードは:max文字以内である必要があります。',
+        'password.confirmed' => 'パスワードが一致していません。',
+    ]);
 
             $data = $request->input();
             $this->create($data);
@@ -82,20 +90,20 @@ class RegisterController extends Controller
         'mail' => 'required|string|email|min:5|max:40|unique:users',
         'password' => 'required|string|min:8|max:20|confirmed',
     ], [
-        'username.required' => ':attribute は必須です。',
-        'username.string' => ':attribute は文字列である必要があります。',
-        'username.min' => ':attribute は:min文字以上である必要があります。',
-        'username.max' => ':attribute は:max文字以内である必要があります。',
-        'mail.required' => ':attribute は必須です。',
-        'mail.string' => ':attribute は文字列である必要があります。',
-        'mail.email' => ':attribute は有効なメールアドレスである必要があります。',
-        'mail.min' => ':attribute は:min文字以上である必要があります。',
-        'mail.max' => ':attribute は:max文字以内である必要があります。',
-        'mail.unique' => ':attribute は既に存在します。',
-        'password.required' => ':attribute は必須です。',
-        'password.string' => ':attribute は文字列である必要があります。',
-        'password.min' => ':attribute は:min文字以上である必要があります。',
-        'password.max' => ':attribute は:max文字以内である必要があります。',
+        'username.required' => 'ユーザー名は必須です。',
+        'username.string' => 'ユーザー名は文字列である必要があります。',
+        'username.min' => 'ユーザー名は:min文字以上である必要があります。',
+        'username.max' => 'ユーザー名は:max文字以内である必要があります。',
+        'mail.required' => 'メールアドレスは必須です。',
+        'mail.string' => 'メールアドレスは文字列である必要があります。',
+        'mail.email' => '有効なメールアドレスを使用してください。',
+        'mail.min' => 'メールアドレスは:min文字以上である必要があります。',
+        'mail.max' => 'メールアドレスは:max文字以内である必要があります。',
+        'mail.unique' => '既に存在するメールアドレスです。',
+        'password.required' => 'パスワードは必須です。',
+        'password.string' => 'パスワードは文字列である必要があります。',
+        'password.min' => 'パスワードは:min文字以上である必要があります。',
+        'password.max' => 'パスワードは:max文字以内である必要があります。',
         'password.confirmed' => 'パスワードが一致していません。',
     ]);
 

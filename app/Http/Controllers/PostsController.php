@@ -21,15 +21,19 @@ class PostsController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-        'post' => 'required|string|min:1|max:150',
-    ], [
-        'post.required' => ':attribute は必須です。',
-        'post.string' => ':attribute は文字列である必要があります。',
-        'post.min' => ':attribute は:min文字以上である必要があります。',
-        'post.max' => ':attribute は:max文字以内である必要があります。',
-    ]);
-        $post = $request->input('content');
+            'post' => 'required|string|min:1|max:150',
+        ], [
+            'post.required' => '投稿内容を入力してください。',
+            'post.string' => '投稿内容は文字列で入力してください。',
+            'post.min' => '投稿内容は:min文字以上で入力してください。',
+            'post.max' => '投稿内容は:max文字以内で入力してください。',
+        ]);
+        $post = $request->input('post');
         $user_id = Auth::id();
+        if (!$user_id) {
+            return redirect()->back()->with('error', 'ユーザー情報が取得できませんでした。');
+        }
+
          Post::create([
             'post' => $post,
             'user_id' => $user_id
@@ -63,10 +67,10 @@ class PostsController extends Controller
         $request->validate([
             'post' => 'required|string|min:1|max:150',
         ], [
-            'post.required' => ':attribute は必須です。',
-            'post.string' => ':attribute は文字列である必要があります。',
-            'post.min' => ':attribute は:min文字以上である必要があります。',
-            'post.max' => ':attribute は:max文字以内である必要があります。',
+            'post.required' => '投稿内容の入力は必須です。',
+            'post.string' => '投稿内容は文字列である必要があります。',
+            'post.min' => '投稿内容は:min文字以上である必要があります。',
+            'post.max' => '投稿内容は:max文字以内である必要があります。',
         ]);
         $id = $request->input('id');
         $post = Post::find($id);

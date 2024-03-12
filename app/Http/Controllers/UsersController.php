@@ -28,26 +28,33 @@ class UsersController extends Controller
     {
         //ユーザー取得
         $user = Auth::user();
-        $request->validate(
-        //バリデーションメッセージ
-        [
-            'required' => ':attribute は必須です。',
-            'string' => ':attribute は文字列である必要があります。',
-            'min' => ':attribute は:min文字以上である必要があります。',
-            'max' => ':attribute は:max文字以内である必要があります。',
-            'email' => ':attribute は有効なメールアドレスである必要があります。',
-            'unique' => ':attribute は既に存在します。',
-            'confirmed' => 'パスワードが一致していません。',
-            'bio' => ':attribute が書いていない'
-        ],
-        //ルール設定
-        [
-            'username' => 'required|string|min:1|max:100',
-            'mail' => 'required|string|email|min:1|max:40|unique:users,mail,' . $user->id,
-            'password' => 'nullable|sometimes|required|string|min:1|max:20|confirmed',
-            'bio' => 'nullable|string',
-            'images' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
+       $request->validate([
+    'username.required' => 'ユーザー名は必須です。',
+    'username.string' => 'ユーザー名は文字列である必要があります。',
+    'username.min' => 'ユーザー名は:min文字以上である必要があります。',
+    'username.max' => 'ユーザー名は:max文字以内である必要があります。',
+    'mail.required' => 'メールアドレスは必須です。',
+    'mail.string' => 'メールアドレスは文字列である必要があります。',
+    'mail.email' => '有効なメールアドレスを使用してください。',
+    'mail.min' => 'メールアドレスは:min文字以上である必要があります。',
+    'mail.max' => 'メールアドレスは:max文字以内である必要があります。',
+    'mail.unique' => '既に存在するメールアドレスです。',
+    'password.required' => 'パスワードは必須です。',
+    'password.string' => 'パスワードは文字列である必要があります。',
+    'password.min' => 'パスワードは:min文字以上である必要があります。',
+    'password.max' => 'パスワードは:max文字以内である必要があります。',
+    'password.confirmed' => 'パスワードが一致していません。',
+    'bio.max' => '自己紹介は150文字以内で入力してください。',
+    'images.image' => '画像ファイルを選択してください。',
+    'images.mimes' => '画像ファイルはjpg、jpeg、png形式のみアップロードできます。',
+    'images.max' => '画像ファイルのサイズは2MB以下にしてください。',
+],[
+    'username' => 'required|string|min:2|max:100',
+    'mail' => 'required|string|email|min:5|max:40|unique:users,mail,' . $user->id,
+    'password' => 'nullable|string|min:1|max:20|confirmed',
+    'bio' => 'nullable|max:150',
+    'images' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+]);
         // バリデーションを実行
         //自己紹介文
 // ddd($request->input('bio'));
