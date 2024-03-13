@@ -28,7 +28,14 @@ class UsersController extends Controller
     {
         //ユーザー取得
         $user = Auth::user();
-       $request->validate([
+        $userData = Auth::user();
+      $request->validate([
+    'username' => 'required|string|min:2|max:100',
+    'mail' => 'required|string|email|min:5|max:40|unique:users,mail,' . $user->id,
+    'password' => 'nullable|string|min:1|max:20|confirmed',
+    'bio' => 'nullable|max:150',
+    'images' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+], [
     'username.required' => 'ユーザー名は必須です。',
     'username.string' => 'ユーザー名は文字列である必要があります。',
     'username.min' => 'ユーザー名は:min文字以上である必要があります。',
@@ -48,23 +55,19 @@ class UsersController extends Controller
     'images.image' => '画像ファイルを選択してください。',
     'images.mimes' => '画像ファイルはjpg、jpeg、png形式のみアップロードできます。',
     'images.max' => '画像ファイルのサイズは2MB以下にしてください。',
-],[
-    'username' => 'required|string|min:2|max:100',
-    'mail' => 'required|string|email|min:5|max:40|unique:users,mail,' . $user->id,
-    'password' => 'nullable|string|min:1|max:20|confirmed',
-    'bio' => 'nullable|max:150',
-    'images' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
 ]);
         // バリデーションを実行
         //自己紹介文
 // ddd($request->input('bio'));
         // リクエストデータから必要な情報を取得
-        $userData= [
-            'username' => $request->input('username'),
-            'mail' => $request->input('mail'),
-            'bio' => $request->input('bio')
+        if ($request->filled('username', 'mail', 'bio')) {
+            $userData= [
+                'username' => $request->input('username'),
+                'mail' => $request->input('mail'),
+                'bio' => $request->input('bio')
 
-        ];
+            ];
+        }
         //アイコン変更処理
         // if ($request->hasFile('images')) {
         //     $avatar = $request->input('images');
@@ -92,7 +95,9 @@ class UsersController extends Controller
             $userData['password'] = Hash::make($request->input('password'));
         }
         // ユーザー情報を更新
-        $user -> update($userData);
+        if ($user !== $userData){
+            $user -> update($userData);
+        }
         //ページ移動
         return redirect('/top')->with('success', 'ユーザー情報が更新されました。');
     }

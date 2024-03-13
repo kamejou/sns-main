@@ -21,6 +21,7 @@
 
     <br>
 
+
     <div class="whole margin_top">
         <div class="profile_item">{{ Form::label('password', 'パスワード') }}</div>
         <div class="profile_input_item">{{ Form::password('password', ['class' => 'input']) }}</div>

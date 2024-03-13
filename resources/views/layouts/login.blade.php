@@ -42,8 +42,8 @@
                     <div class="content">
                         <div class="sp-menu__list">
                             <button class="sp-menu__item back_white"><a href="/top" class="sp-menu__link grey font_item">ホーム</a></button>
-                            <button class="sp-menu__item back_blue"><a href="/profile" class="sp-menu__link white font_item">プロフィール編集</a></button>
-                            <button class="sp-menu__item back_white"><a href="/logout" class="sp-menu__link grey font_item">ログアウト</a></button>
+                            <button class="sp-menu__item back_white"><a href="/profile" class="sp-menu__link grey font_item">プロフィール編集</a></button>
+                            <button class="sp-menu__item back_white "><a href="/logout" class="sp-menu__link grey font_item">ログアウト</a></button>
                         </div>
                     </div>
                 </section>

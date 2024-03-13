@@ -87,7 +87,7 @@
                     <img src="{{ asset('images/edit.png') }}" alt="更新" class="img_ed">
                   </button>
                 </div>
-                {{ csrf_field() }}
+                   @csrf
            </form>
         </div>
     </div>
