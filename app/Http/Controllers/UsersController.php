@@ -29,13 +29,19 @@ class UsersController extends Controller
         //ユーザー取得
         $user = Auth::user();
         $userData = Auth::user();
-      $request->validate([
+
+$rules = [
     'username' => 'required|string|min:2|max:100',
-    'mail' => 'required|string|email|min:5|max:40|unique:users,mail,' . $user->id,
+    'mail' => 'required|string|email|min:5|max:40|unique:users,mail,' . Auth::user()->id,
     'password' => 'nullable|string|min:1|max:20|confirmed',
     'bio' => 'nullable|max:150',
-    'images' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-], [
+];
+
+if ($request->hasFile('images')) {
+    $rules['images'] = 'nullable|image|mimes:jpg,jpeg,png|max:2048';
+}
+
+$request->validate($rules, [
     'username.required' => 'ユーザー名は必須です。',
     'username.string' => 'ユーザー名は文字列である必要があります。',
     'username.min' => 'ユーザー名は:min文字以上である必要があります。',

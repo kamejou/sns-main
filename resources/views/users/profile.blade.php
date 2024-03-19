@@ -44,11 +44,11 @@
     <br>
 
     <div class="whole margin_top">
-        <div class="profile_item">{{ Form::label('images', 'アイコンのアップロード') }}</div>
+        <div class="profile_item">{{ __('アイコンのアップロード') }}</div>
         <div class="profile_input_item">
             <label class="upload-label">
                 <p class="p_size">ファイルを選択</p>
-                {{ Form::file('images', ['class' => 'input']) }}
+                <input type="file" name="images" class="input">
             </label>
         </div>
     </div>
