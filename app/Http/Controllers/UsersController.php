@@ -30,18 +30,13 @@ class UsersController extends Controller
         $user = Auth::user();
         $userData = Auth::user();
 
-$rules = [
+$request->validate([
     'username' => 'required|string|min:2|max:100',
-    'mail' => 'required|string|email|min:5|max:40|unique:users,mail,' . Auth::user()->id,
+    'mail' => 'required|string|email|min:5|max:40|unique:users,mail,' . $user->id,
     'password' => 'nullable|string|min:1|max:20|confirmed',
     'bio' => 'nullable|max:150',
-];
-
-if ($request->hasFile('images')) {
-    $rules['images'] = 'nullable|image|mimes:jpg,jpeg,png|max:2048';
-}
-
-$request->validate($rules, [
+    'images' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+], [
     'username.required' => 'ユーザー名は必須です。',
     'username.string' => 'ユーザー名は文字列である必要があります。',
     'username.min' => 'ユーザー名は:min文字以上である必要があります。',
@@ -90,9 +85,12 @@ $request->validate($rules, [
         //     $icon = Auth::user('images');
         //     $userData = ['images' => $request->file('images')];
         // }
-        if ($request->filled('images')) {
-            $avatar = $request->input('images');
-            $userData['images'] = $avatar;
+        if ($request->hasFile('images')) {
+
+            $file_name = $request->file('images')->getClientOriginalName();
+            $avatar = $request->file('images')->storeAs('public', $file_name);
+
+            $userData['images'] = $file_name;
         }
 
 

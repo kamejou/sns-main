@@ -6,7 +6,7 @@
         <img src="{{ asset('images/' . Auth::user()->images) }}" class="example1 margin_top">
     </div>
     <div class="left">
-    {!! Form::open(['url' => '/update/top','method' => 'POST']) !!}
+    {!! Form::open(['url' => '/update/top','method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     <div class="whole margin_top">
         <div class="profile_item">{{ Form::label('username', 'ユーザー名')}}</div>
         <div class="profile_input_item">{{ Form::text('username', Auth::user()-> username, ['class' => 'input']) }}</div>
